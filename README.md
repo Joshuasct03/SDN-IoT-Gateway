@@ -44,7 +44,6 @@ Project Structure:
 - `run_demo.sh`: Automates controller and network launching.
 - `setup_queues.sh`: QoS queue configuration for OVS.
 - `sdn_dashboard.py`: Streamlit dashboard UI.
-- `docs/`: Project report, slides, and images.
 
 License:
 This project is licensed under the MIT License.

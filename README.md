@@ -1,55 +1,158 @@
-# SDN-based-QoS-Traffic-Classification-Load-Balancing-for-IoT-Gateway
-This project implements a real-time, QoS-aware traffic classification and load balancing system for IoT gateways using SDN principles. It leverages Mininet for emulation, Ryu controllers for dynamic traffic management, and OpenFlow-enabled switches to prioritize critical IoT data, ensuring scalable and secure network operations.
-SDN-based QoS Traffic Classification & Load Balancing for IoT Gateway
+# SDN-Based QoS Traffic Classification & Load Balancing for IoT Gateway
 
-Project Overview:
-This project implements a Software-Defined Networking (SDN) architecture to achieve real-time traffic classification and QoS-aware load balancing in IoT gateway environments. It uses Mininet for network emulation, Ryu as the SDN controller framework, and Open vSwitch (OVS) for programmable switches.
+## Overview
 
-Features:
-- Rule-based traffic classification based on protocol and port numbers.
-- Dynamic load monitoring with adaptive threshold-based controller load balancing.
-- Seamless switch migration between controllers to prevent overload.
-- Streamlit dashboard for real-time visualization of controller loads and performance.
+This project implements a **Software-Defined Networking (SDN) based IoT gateway** that performs real-time traffic classification and adaptive controller load balancing to maintain Quality of Service (QoS) in dynamic network environments.
 
-Technologies Used:
-- Python 3.9+
-- Ryu SDN Controller
-- Mininet Network Simulator
-- Open vSwitch
-- Streamlit UI
+The system separates the control plane using multiple SDN controllers and dynamically redistributes network load to prevent controller overload while prioritizing critical IoT traffic.
 
-Setup and Usage:
+The implementation is developed and evaluated using **Mininet**, **Ryu SDN Controller**, and **Open vSwitch (OVS)** with a monitoring dashboard for real-time performance visualization.
 
-Installation:
-1. Clone this repository
-2. Install dependencies:
+---
+
+## Problem Statement
+
+IoT gateways handle heterogeneous traffic with different latency and reliability requirements.
+Traditional networks use static configurations, which can lead to:
+
+* Controller overload
+* Increased flow setup delay
+* QoS degradation for critical traffic
+
+This project addresses these challenges using SDN programmability and adaptive decision logic.
+
+---
+
+## Key Features
+
+* Rule-based traffic classification using protocol and port information
+* QoS-aware queue assignment (High / Medium / Low priority)
+* Dual-controller SDN architecture
+* Adaptive threshold-based controller load balancing
+* Automatic switch migration between controllers
+* Real-time monitoring dashboard using Streamlit
+* Automated experiment setup using scripts
+
+---
+
+## System Architecture
+
+![Architecture](images/architecture.png)
+
+---
+
+## Technologies Used
+
+* Python 3.9+
+* Ryu SDN Controller
+* Mininet Network Emulator
+* Open vSwitch (OVS)
+* OpenFlow 1.3
+* Streamlit Dashboard
+
+---
+
+## Project Structure
+
+```
+SDN-IoT-Gateway/
+│
+├── controllers/        # SDN controller applications
+├── topology/           # Mininet topology definition
+├── dashboard/          # Streamlit monitoring UI
+├── scripts/            # Automation scripts
+├── images/             # Architecture & result screenshots
+├── docs/               # Project documentation
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## How It Works
+
+1. Traffic arrives at OpenFlow switches in the Mininet topology.
+2. The **Work Controller** classifies packets based on protocol and assigns QoS queues.
+3. Controller load is continuously monitored using telemetry.
+4. The **Decision Controller** detects overload conditions.
+5. Switches are migrated dynamically to balance controller load.
+6. Performance metrics are visualized through the dashboard.
+
+---
+
+## Quick Demo (Recommended)
+
+### 1️⃣ Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-3. Configure queues using `setup_queues.sh`
-4. Launch Ryu controllers:
-ryu-manager decision_controller.py
-ryu-manager enhanced_traffic_controller.py
+### 2️⃣ Configure QoS queues
 
-5. Setup and run the network with:
-sudo ./run_demo.sh
+```bash
+bash scripts/setup_queues.sh
+```
 
-6. Start Streamlit dashboard:
-streamlit run sdn_dashboard.py
+### 3️⃣ Start controllers
 
+```bash
+ryu-manager controllers/decision_controller.py
+ryu-manager controllers/enhanced_traffic_controller.py
+```
 
-Project Structure:
-- `decision_controller.py`: Implements load balancing and migration logic.
-- `enhanced_traffic_controller.py`: Traffic classifier and QoS enforcer.
-- `multi_controller_topo.py`: Defines Mininet topology.
-- `run_demo.sh`: Automates controller and network launching.
-- `setup_queues.sh`: QoS queue configuration for OVS.
-- `sdn_dashboard.py`: Streamlit dashboard UI.
+### 4️⃣ Run Mininet topology
 
-# TEAM
-Joshua Felix, Muneera S, Siddharth S Krishnan, Vibhu V
+```bash
+sudo bash scripts/run_demo.sh
+```
 
-License:
+### 5️⃣ Launch dashboard
+
+```bash
+streamlit run dashboard/sdn_dashboard.py
+```
+
+---
+
+## Results
+
+Experimental evaluation in Mininet showed:
+
+* Improved throughput under controller load conditions
+* Reduced network latency through adaptive migration
+* Stable QoS prioritization for critical flows
+
+Example dashboard output:
+
+![Results](images/results.png)
+
+---
+
+## My Contributions
+
+* Implemented SDN traffic classification and QoS queue assignment
+* Developed adaptive controller load monitoring and migration logic
+* Integrated Streamlit dashboard for performance visualization
+* Performed Mininet experimentation and testing
+
+---
+
+## Academic Context
+
+This project was developed as a **B.Tech Minor Project** in Electronics and Communication Engineering (Networking Minor).
+
+The implementation focuses on demonstrating SDN-based adaptive traffic management concepts in an emulated IoT gateway environment.
+
+---
+
+## License
+
 This project is licensed under the MIT License.
 
-Acknowledgments:
-Thanks to mentors and project collaborators for their guidance and support.
+---
+
+## Acknowledgment
+
+Developed as a team academic project under faculty guidance at
+Sree Chitra Thirunal College of Engineering, Thiruvananthapuram.

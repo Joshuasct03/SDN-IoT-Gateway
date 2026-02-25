@@ -45,6 +45,9 @@ Project Structure:
 - `setup_queues.sh`: QoS queue configuration for OVS.
 - `sdn_dashboard.py`: Streamlit dashboard UI.
 
+# TEAM
+Joshua Felix, Muneera S, Siddharth S Krishnan, Vibhu V
+
 License:
 This project is licensed under the MIT License.
 

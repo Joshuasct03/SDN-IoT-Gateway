@@ -37,7 +37,7 @@ This project addresses these challenges using SDN programmability and adaptive d
 
 ## System Architecture
 
-![Architecture](images/architecture.png)
+![Architecture](images/mininet_topology.png)
 
 ---
 
@@ -125,7 +125,7 @@ Experimental evaluation in Mininet showed:
 
 Example dashboard output:
 
-![Results](images/results.png)
+![Results](images/load_distribution.png)
 
 ---
 
